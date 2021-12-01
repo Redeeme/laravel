@@ -26,7 +26,8 @@
             @foreach($blogy as $item)
                 <tr>
                     <td>
-                        <form action="{{route('crete')}}" method="post">{{$item->nazov}}
+                        <form action="{{route('crete')}}" method="post">
+                            {{$item->nazov}}
                         </form>
                     </td>
                     <td>{{$item->autor}}</td>
