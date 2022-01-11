@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-    function edit($id){
+    function edit(){
         $row = DB::table('users')
-            ->where('id',$id)
+            ->where('id',Auth::id())
             ->first();
         $data = [
             'Info'=>$row,
@@ -31,9 +32,9 @@ class ProfileController extends Controller
         return redirect('profile');
     }
 
-    function delete($id){
+    function delete(){
         $delete = DB::table('users')
-            ->where('id',$id)
+            ->where('id',Auth::id())
             ->delete();
         return redirect('index');
     }

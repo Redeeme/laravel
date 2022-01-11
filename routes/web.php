@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
@@ -23,10 +24,10 @@ Route::view("/profile",'profile');
 Route::view("/clanok",'clanok');
 Route::view("/test",'test');
 Route::get('/clanky',[BlogController::class,'index']);
-Route::get('edit/{id}',[ProfileController::class,'edit']);
+Route::get('edit',[ProfileController::class,'edit']);
 Route::post('update',[ProfileController::class,'update'])->name('update');
 Route::post('crete',[ProfileController::class,'crete'])->name('crete');
-Route::get('delete/{id}',[ProfileController::class,'delete']);
+Route::get('delete',[ProfileController::class,'delete']);
 
 
 Auth::routes();
