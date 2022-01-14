@@ -38,21 +38,4 @@
         </table>
     </div>
 </div>
-<div class="footer">
-    <div class="containerFooter">
-        <div class="footerText">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at ligula suscipit, iaculis ipsum
-                quis,
-                fringilla nisi. Sed dapibus placerat lorem. Praesent vel blandit velit. Aliquam molestie nulla
-                vitae
-                sapien eleifend, at ultrices elit efficitur.
-            </p>
-        </div>
-        <div class="bottom-right">
-            <p>Author</p>
-            <a href="#">Jozef Forgáč</a>
-        </div>
-    </div>
-</div>
 @endsection

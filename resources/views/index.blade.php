@@ -5,8 +5,7 @@
     <div class="obsah">
         <div class="karta">
             <div>
-                <img src="https://ychef.files.bbci.co.uk/976x549/p01rpz8r.jpg" class="responsive" alt="obrazok1"
-                     height="560" width="2500">
+                <img src="http://cdn.cnn.com/cnnnext/dam/assets/181010131059-australia-best-beaches-cossies-beach-cocos3.jpg" class="responsive" alt="obrazok1" width="1200">
                 <h3>10 dôvodov, prečo ísť na Island</h3>
                 <p>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
                     born
@@ -27,8 +26,8 @@
             </div>
         </div>
         <div class="karta">
-            <img src="https://live-production.wcms.abc-cdn.net.au/322b36b1e1f99ff89977c7cca19280b0?impolicy=wcms_crop_resize&cropH=1125&cropW=1998&xPos=1&yPos=0&width=862&height=485"
-                 class="responsive" alt="obrazok2" height="560" width="2500">
+            <img src="https://cdn.sandals.com/beaches/v12/images/general/destinations/home/beach.jpg"
+                 class="responsive" alt="obrazok2" height="500" width="1200">
             <h3>Tu sú najlepšie mestá, ktoré môžete navštíviť po celom svete sami</h3>
             <p>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born
                 and I
@@ -49,7 +48,7 @@
         </div>
         <div>
             <div class="karta">
-                <img src="https://thumbs.dreamstime.com/b/passport-flight-fly-travelling-travel-citizenship-concept-airplane-traveller-air-stock-image-86057681.jpg"
+                <img src="https://cdn.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072__480.jpg"
                      class="responsive" alt="obrazok3" height="560" width="2500">
                 <h3>Cenovo dostupné destinácie na návštevu</h3>
                 <p>"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
@@ -102,21 +101,6 @@
                 <a href="#">instagram</a><br>
                 <a href="#">twitter</a>
             </div>
-        </div>
-    </div>
-</div>
-<div class="footer">
-    <div class="containerFooter">
-        <div class="footerText">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at ligula suscipit, iaculis ipsum quis,
-                fringilla nisi. Sed dapibus placerat lorem. Praesent vel blandit velit. Aliquam molestie nulla vitae
-                sapien eleifend, at ultrices elit efficitur.
-            </p>
-        </div>
-        <div class="bottom-right">
-            <p>Author</p>
-            <a href="#">Jozef Forgáč</a>
         </div>
     </div>
 </div>
