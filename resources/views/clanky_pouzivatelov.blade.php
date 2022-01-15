@@ -18,6 +18,7 @@
                     </div>
                 </div>
             </div>
+            @auth
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">Add new blogs</div>
@@ -42,6 +43,7 @@
                     </div>
                 </div>
             </div>
+            @endauth
         </div>
     </div>
 

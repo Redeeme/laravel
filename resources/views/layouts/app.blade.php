@@ -3,12 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'TravBlog') }}</title>
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'TravBlog') }}</title>
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cssFile.css') }}" rel="stylesheet"><!-- own -->
+    <link rel="stylesheet" href="{{ asset('datatable/css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('datatable/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
     <!-- Scripts -->
-    <script src="{{asset('jquery/jquery-3.6.0.min.js')}}"></script>
+
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('jquery/jquery-3.6.0.min.js')}}"></script>
     <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('datatable/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('sweetalert2/sweetalert2.min.js')}}"></script>
@@ -16,17 +25,12 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <!-- Styles -->
-    <link href="{{ asset('css/cssFile.css') }}" rel="stylesheet"><!-- own -->
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('datatable/css/dataTables.bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('datatable/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('sweetalert2/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
+
+
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-info shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="index">
                 TravBlog
@@ -47,16 +51,16 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     <li class="nav-item">
-                        <a class="nav-link" href="index">Domov</a>
+                        <a class="nav-link" href="{{route('index')}}">Domov</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="clanky">Clanky</a>
+                        <a class="nav-link" href="{{route('clanky')}}">Clanky</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="clanky_pouzivatelov">clanky od pouzivatelov</a>
+                        <a class="nav-link" href="{{route('clanky_pouzivatelov')}}">clanky od pouzivatelov</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="o_nas">O nas</a>
+                        <a class="nav-link" href="{{route('o_nas')}}">O nas</a>
                     </li>
                     @guest
                         @if (Route::has('login'))

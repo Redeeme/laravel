@@ -17,20 +17,20 @@ use App\Http\Controllers\UserBlogsController;
 */
 
 
-Route::view("/clanky",'clanky');
-Route::view("/o_nas",'o_nas');
-Route::view("/index",'index');
-Route::view("/login",'login');
-Route::view("/profile",'profile');
-Route::view("/clanok",'clanok');
-Route::get('/clanky',[BlogController::class,'index']);
+Route::view("/clanky",'clanky')->name('clanky');
+Route::view("/o_nas",'o_nas')->name('o_nas');
+Route::view("/index",'index')->name('index');
+Route::view("/login",'login')->name('login');
+Route::view("/profile",'profile')->name('profile');
+Route::get('/clanky',[BlogController::class,'index'])->name('clanky');
 Route::get('edit',[ProfileController::class,'edit']);
 Route::post('update',[ProfileController::class,'update'])->name('update');
-Route::post('crete',[ProfileController::class,'crete'])->name('crete');
 Route::get('delete',[ProfileController::class,'delete']);
 Route::get('/clanky_pouzivatelov',[UserBlogsController::class,'index'])->name('clanky_pouzivatelov');
 Route::post('/add_blog',[UserBlogsController::class,'addBlog'])->name('add.blog');
 Route::get('/getUserBlogsList',[UserBlogsController::class,'getUserBlogsList'])->name('get.userBlogs.list');
+
+Route::get('/clanky/{id}', [BlogController::class, 'show'])->name('blog.show');
 
 
 Auth::routes();

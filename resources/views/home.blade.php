@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="{{ asset('js/app.js') }}" defer></script>
                 <h3>{{ __('Dashboard') }}</h3>
 
                     @if (session('status'))

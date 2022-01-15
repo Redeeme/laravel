@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="{{ asset('js/app.js') }}" defer></script>
 <form action="{{route('update')}}" method="post">
     @csrf
 <input type="hidden" name="cid" value="{{$Info->id}}">

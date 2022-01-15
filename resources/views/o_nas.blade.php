@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="{{ asset('js/app.js') }}" defer></script>
 <div class="obsah_O_Nas">
     <div class="Karta_O_Nas">
         <img src="https://pickvisa.com/storage/public/articles/2e3bfb92a69446c286478c1dee9f2592.jpg"
