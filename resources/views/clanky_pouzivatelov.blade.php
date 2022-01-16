@@ -48,7 +48,6 @@
     </div>
 
     <script>
-
         toastr.options.preventDuplicates = true;
 
         $.ajaxSetup({

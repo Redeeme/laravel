@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserBlogsController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +32,7 @@ Route::post('/add_blog',[UserBlogsController::class,'addBlog'])->name('add.blog'
 Route::get('/getUserBlogsList',[UserBlogsController::class,'getUserBlogsList'])->name('get.userBlogs.list');
 
 Route::get('/clanky/{id}', [BlogController::class, 'show'])->name('blog.show');
+Route::post('/comments/{blog_id}',[CommentController::class,'store'])->name('comments.add');
 
 
 Auth::routes();
