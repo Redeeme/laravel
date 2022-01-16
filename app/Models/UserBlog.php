@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserBlogs extends Model
+class UserBlog extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['blog_name','blog'];
+    protected $fillable = ['nazov', 'autor','slug','kontent','uvodny_text'];
 }

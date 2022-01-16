@@ -5,13 +5,13 @@
         <div class="row" style="margin-top: 45px">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">User Blogs</div>
+                    <div class="card-header">Clanky pouzivatelov</div>
                     <div class="card-body">
-                        <table class="table table-hover table-condensed" id="userblogs_table">
+                        <table class="table table-hover table-condensed" id="user_blogs_table">
                             <thead>
-                            <th>#</th>
-                            <th>Blog name</th>
-                            <th>blog</th>
+                            <th>Nazov Clanku</th>
+                            <th>Autor</th>
+                            <th>Zobrazenie</th>
                             </thead>
                             <tbody></tbody>
                         </table>
@@ -21,19 +21,24 @@
             @auth
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">Add new blogs</div>
+                    <div class="card-header">Pridaj novy clanok</div>
                     <div class="card-body">
                         <form action="{{route('add.blog')}}" method=post id="add_blog_form">
                             @csrf
                             <div class="form-group">
-                                <label for="">blog name</label>
+                                <label for="">Nazov Blogu</label>
                                 <input type="text" class="form-control" name="blog_name" placeholder="enter blog name">
                                 <span class="text-danger error-text blog_name_error"></span>
                             </div>
                             <div class="form-group">
-                                <label for="">blog</label>
-                                <input type="text" class="form-control" name="blog" placeholder="enter blog">
-                                <span class="text-danger error-text blog_error"></span>
+                                <label for="">Uvod Blogu</label>
+                                <input type="text" class="form-control" name="blog_intro" placeholder="enter blog intro">
+                                <span class="text-danger error-text blog_intro_error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Obsah Blogu</label>
+                                <input type="text" class="form-control" name="blog_content" placeholder="enter blog content">
+                                <span class="text-danger error-text blog_content_error"></span>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn-block btn-success">SAVE</button>
@@ -77,23 +82,29 @@
                             });
                         }else{
                             $(form)[0].reset();
-                            $('#userblogs_table').DataTable().ajax.reload(null,false);
+                            $('#user_blogs_table').DataTable().ajax.reload(null,false);
                             toastr.success(data.msg);
                         }
                     }
                 });
             });
             //GET ALL BLOGS
-            $('#userblogs_table').DataTable({
+            $('#user_blogs_table').DataTable({
                 processing:true,
                 serverside:true,
                 info:true,
                 ajax:"{{route('get.userBlogs.list')}}",
                 columns:[
-                    {data:'id',name:'id'},
-                    {data:'blog_name',name:'blog_name'},
-                    {data:'blog',name:'blog'},
+                    {data:'nazov',name:'nazov'},
+                    {data:'autor',name:'autor'},
+                    {data:'actions',name:'zobraz'},
                 ]
+            });
+            $(document).on('click','#getUserBlogBtn',function (){
+                var blog_id = $(this).data('id');
+                let url = "{{ route('show.userBlog', ':id') }}";
+                url = url.replace(':id', blog_id);
+                document.location.href=url;
             });
         });
     </script>
