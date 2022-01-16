@@ -30,17 +30,25 @@
             </div>
         </div>
     </div>
+    @guest
+        @if (Route::has('login'))
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+            </li>
+        @endif
 
+        @if (Route::has('register'))
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            </li>
+        @endif
+    @else
     <div class="col-md-4">
         <div class="card">
             <div class="card-header">Add new Comment</div>
             <div class="card-body">
                 <form action="{{route('comments.add',$blog->id)}}" method=post>
                     @csrf
-                    <div class="form-group">
-                        <label for="">name</label>
-                        <input type="text" class="form-control" name="name" placeholder="enter name">
-                    </div>
                     <div class="form-group">
                         <label for="">comment</label>
                         <input type="text" class="form-control" name="comment" placeholder="enter comment">
@@ -52,10 +60,12 @@
             </div>
         </div>
     </div>
+    @endguest
     <table class="table table-hover">
         <thead>
-        <th>nazov</th>
-        <th>comment</th>
+        <th>nazov uzivatela</th>
+        <th>koment</th>
+        <th>datum pridania</th>
         </thead>
         <tbody>
         @foreach($comments as $comment)
@@ -64,6 +74,7 @@
                     <h5>{{$comment->name}}</h5>
                 </td>
                 <td>{{$comment->comment}}</td>
+                <td>{{$comment->created_at}}</td>
             </tr>
         @endforeach
         </tbody>

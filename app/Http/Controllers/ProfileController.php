@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
+    function  index(){
+        $comments = DB::table('comments')
+            ->where('user_id', '=', Auth::id())
+            ->get();
+        return view('profile', [
+            'comments'=>$comments,
+        ]);
+    }
     function edit(){
         $row = DB::table('users')
             ->where('id',Auth::id())
