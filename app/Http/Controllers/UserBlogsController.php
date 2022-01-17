@@ -19,6 +19,11 @@ class UserBlogsController extends Controller
 
     public function addBlog(Request $request)
     {
+        $request->validate([
+            'blog_name' => 'required',
+            'blog_intro' => 'required',
+            'blog_content' => 'required'
+        ]);
         $user = User::find(Auth::id());
         $blog = new UserBlog();
         $blog->nazov = $request->blog_name;
@@ -38,9 +43,9 @@ class UserBlogsController extends Controller
     {
         $blogs = UserBlog::all();
         return DataTables::of($blogs)
-            ->addColumn('actions',function($row){
-            return '<button class="btn btn-sm btn-info" data-id="'.$row['id'].'"id="getUserBlogBtn">zobraz</button>';
-        })
+            ->addColumn('actions', function ($row) {
+                return '<button class="btn btn-sm btn-info" data-id="' . $row['id'] . '"id="getUserBlogBtn">zobraz</button>';
+            })
             ->rawColumns(['actions'])
             ->make(true);
     }
@@ -49,7 +54,7 @@ class UserBlogsController extends Controller
     {
         $blog = UserBlog::find($id);
         return view('pouzivatelov_clanok', [
-                    'blog'=>$blog,
-    ]);
+            'blog' => $blog,
+        ]);
     }
 }

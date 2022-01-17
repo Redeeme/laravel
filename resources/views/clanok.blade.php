@@ -4,79 +4,66 @@
     <!-- main -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h4>{{$blog->nazov}}</h4>
+        <div class="col justify-content-md-center">
+            <div class="container">
+                <img src="{{asset($blog->uvodny_obrazok)}}" alt="Snow" style="width:100%;">
+                <div class="centered">
+                    <h6>{{$blog->nazov}}</h6>
+                    <h6>Written By {{$blog->autor}}</h6>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h4>Written By {{$blog->autor}}</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <img src="{{asset($blog->uvodny_obrazok)}}" alt=""/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h4>{!!$blog->uvodny_text !!}</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h4>{!!$blog->kontent!!}</h4>
-            </div>
-        </div>
-    </div>
-    @guest
-        @if (Route::has('login'))
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-        @endif
+            <div class="obsahClanky">
+                <p>{!!$blog->uvodny_text !!}</p>
+                <p>{!!$blog->kontent!!}</p>
 
-        @if (Route::has('register'))
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-            </li>
-        @endif
-    @else
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">Add new Comment</div>
-            <div class="card-body">
-                <form action="{{route('comments.add',$blog->id)}}" method=post>
-                    @csrf
-                    <div class="form-group">
-                        <label for="">comment</label>
-                        <input type="text" class="form-control" name="comment" placeholder="enter comment">
+                @guest
+                    @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                    @endif
+
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                @else
+                    <div class="card">
+                        <div class="card-header">Add new Comment</div>
+                        <div class="card-body">
+                            <form action="{{route('comments.add',$blog->id)}}" method=post>
+                                @csrf
+                                <div class="form-group">
+                                    <label for="">comment</label>
+                                    <label>
+                                        <input type="text" class="form-control" name="comment" placeholder="enter comment">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn-block btn-success">Add comment</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn-block btn-success">Add comment</button>
-                    </div>
-                </form>
+                @endguest
+                <table class="table table-hover">
+                    <thead>
+                    <th>nazov uzivatela</th>
+                    <th>koment</th>
+                    <th>datum pridania</th>
+                    </thead>
+                    <tbody>
+                    @foreach($comments as $comment)
+                        <tr>
+                            <td></p>{{$comment->name}}</p></td>
+                            <td><p>{{$comment->comment}}</p></td>
+                            <td><p>{{$comment->created_at}}</p></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
-    @endguest
-    <table class="table table-hover">
-        <thead>
-        <th>nazov uzivatela</th>
-        <th>koment</th>
-        <th>datum pridania</th>
-        </thead>
-        <tbody>
-        @foreach($comments as $comment)
-            <tr>
-                <td>
-                    <h5>{{$comment->name}}</h5>
-                </td>
-                <td>{{$comment->comment}}</td>
-                <td>{{$comment->created_at}}</td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+
 @endsection

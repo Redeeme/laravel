@@ -12,7 +12,11 @@ use App\Models\User;
 
 class CommentController extends Controller
 {
-    function store(Request $request,$blog_id){
+    function store(Request $request, $blog_id)
+    {
+        $request->validate([
+            'comment' => 'required',
+        ]);
         $blog = Blog::find($blog_id);
         $user = User::find(Auth::id());
         $comment = new Comment();
@@ -23,22 +27,26 @@ class CommentController extends Controller
         $comment->save();
         return redirect()->route('blog.show', $blog->id);
     }
-    function editComment(Request $request,$comment_id){
+
+    function editComment(Request $request, $comment_id)
+    {
         $request->validate([
-            'comment'=>'required',
+            'comment' => 'required',
         ]);
         $updating = DB::table('comments')
-            ->where('id',$comment_id)
-            ->where('user_id',Auth::id())
+            ->where('id', $comment_id)
+            ->where('user_id', Auth::id())
             ->update([
-                'comment'=>$request->input('comment'),
+                'comment' => $request->input('comment'),
             ]);
         return redirect('profile');
     }
-    function delete($comment_id){
+
+    function delete($comment_id)
+    {
         $delete = DB::table('comments')
-            ->where('id',$comment_id)
-            ->where('user_id',Auth::id())
+            ->where('id', $comment_id)
+            ->where('user_id', Auth::id())
             ->delete();
         return redirect('profile');
     }

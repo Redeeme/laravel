@@ -2,33 +2,35 @@
 
 @section('content')
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <div class="card-header">{{ __('Login') }}</div>
+    <div class="page_content">
+        <div class="card-header">{{ __('Login') }}</div>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-        <label for="email">{{ __('E-Mail Address') }}</label>
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-               value="{{ old('email') }}" required autocomplete="email" autofocus>
+            <label for="email">{{ __('E-Mail Address') }}</label>
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                   value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-        @error('email')
-        <span class="invalid-feedback" role="alert">
+            @error('email')
+            <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
-        @enderror
+            @enderror
 
-        <label for="password">{{ __('Password') }}</label>
+            <label for="password">{{ __('Password') }}</label>
 
-        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-               name="password" required autocomplete="current-password">
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                   name="password" required autocomplete="current-password">
 
-        @error('password')
-        <span class="invalid-feedback" role="alert">
+            @error('password')
+            <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
-        @enderror
-        <button type="submit" class="btn btn-primary">
-            {{ __('Login') }}
-        </button>
-    </form>
+            @enderror
+            <button type="submit" class="btn btn-primary">
+                {{ __('Login') }}
+            </button>
+        </form>
+    </div>
 @endsection

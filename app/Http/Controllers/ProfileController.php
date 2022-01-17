@@ -8,41 +8,47 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-    function  index(){
+    function index()
+    {
         $comments = DB::table('comments')
             ->where('user_id', '=', Auth::id())
             ->get();
         return view('profile', [
-            'comments'=>$comments,
+            'comments' => $comments,
         ]);
     }
-    function edit(){
+
+    function edit()
+    {
         $row = DB::table('users')
-            ->where('id',Auth::id())
+            ->where('id', Auth::id())
             ->first();
         $data = [
-            'Info'=>$row,
-            'Title'=>'Edit'
-            ];
-        return view('auth.edit',$data);
+            'Info' => $row,
+            'Title' => 'Edit'
+        ];
+        return view('auth.edit', $data);
     }
-    function update(Request $request){
+
+    function update(Request $request)
+    {
         $request->validate([
-            'name'=>'required',
-            'email'=>'required|email'
+            'name' => 'required',
+            'email' => 'required|email'
         ]);
         $updating = DB::table('users')
-                    ->where('id',$request->input('cid'))
-                    ->update([
-                        'name'=>$request->input('name'),
-                        'email'=>$request->input('email')
-                    ]);
+            ->where('id', $request->input('cid'))
+            ->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email')
+            ]);
         return redirect('profile');
     }
 
-    function delete(){
+    function delete()
+    {
         $delete = DB::table('users')
-            ->where('id',Auth::id())
+            ->where('id', Auth::id())
             ->delete();
         return redirect('index');
     }

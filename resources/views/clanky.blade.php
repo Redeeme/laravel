@@ -20,18 +20,18 @@
             </p>
             <table class="table table-hover">
                 <thead>
-                <th>nazov</th>
-                <th>autor</th>
+                <th>Pridane dna</th>
+                <th>Nazov</th>
                 </thead>
                 <tbody>
                 @foreach($blogs as $blog)
                     <tr>
+                        <td>{{$blog->created_at}}</td>
                         <td>
                             <form action="{{route('index')}}" method="post">
                                 <a href="{{route('blog.show', $blog->id)}}">{{$blog->nazov}}</a>
                             </form>
                         </td>
-                        <td>{{$blog->autor}}</td>
                     </tr>
 
                 @endforeach

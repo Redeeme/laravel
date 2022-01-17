@@ -32,7 +32,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="index">
+            <a class="navbar-brand" href="{{route('index')}}">
                 TravBlog
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -57,7 +57,7 @@
                         <a class="nav-link" href="{{route('clanky')}}">Clanky</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('clanky_pouzivatelov')}}">clanky od pouzivatelov</a>
+                        <a class="nav-link" href="{{route('clanky_pouzivatelov')}}">Clanky od pouzivatelov</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('o_nas')}}">O nas</a>
@@ -77,7 +77,7 @@
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -87,7 +87,7 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                                <a class="dropdown-item"  href="{{ route('profile') }}">profile</a>
+                                <a class="dropdown-item" href="{{ route('profile') }}">Profil</a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -107,14 +107,14 @@
 </body>
 <div class="containerFooter">
     <div class="footerText">
-        <p>
+        <h6>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at ligula suscipit, iaculis ipsum quis,
             fringilla nisi. Sed dapibus placerat lorem. Praesent vel blandit velit. Aliquam molestie nulla vitae
             sapien eleifend, at ultrices elit efficitur.
-        </p>
+        </h6>
     </div>
     <div class="bottom-right">
-        <p>Author</p>
+        <h6>Author</h6>
         <a href="#">Jozef Forgáč</a>
     </div>
 </div>

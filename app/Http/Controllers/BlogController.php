@@ -10,18 +10,21 @@ use Illuminate\Support\Facades\DB;
 class BlogController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         $blogs = DB::select('select * from blogs');
-        return view('clanky',['blogs'=>$blogs]);
+        return view('clanky', ['blogs' => $blogs]);
     }
-    public function show($id){
+
+    public function show($id)
+    {
         $blog = Blog::find($id);
         $comments = DB::table('comments')
             ->where('blog_id', '=', $id)
             ->get();
         return view('clanok', [
-            'blog'=>$blog,
-            'comments'=>$comments,
+            'blog' => $blog,
+            'comments' => $comments,
         ]);
     }
 
