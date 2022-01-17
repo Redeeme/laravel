@@ -33,6 +33,11 @@ Route::get('/delete', [ProfileController::class, 'delete'])->name('delete');
 
 Route::get('/clanky/{id}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/clanky', [BlogController::class, 'index'])->name('clanky');
+Route::get('/add', [BlogController::class, 'add'])->name('admin.add');
+Route::post('/clanky/add', [BlogController::class, 'addBlog'])->name('admin.addBlog');
+Route::get('/editB/{blog_id}', [BlogController::class, 'edit'])->name('admin.edit');
+Route::get('/deleteB/{blog_id}', [BlogController::class, 'deleteBlog'])->name('admin.delete');
+Route::post('/clanky/editB/{blog_id}', [BlogController::class, 'editBlog'])->name('admin.editBlog');
 
 Route::get('/clanky_pouzivatelov', [UserBlogsController::class, 'index'])->name('clanky_pouzivatelov');
 Route::get('/clanky_pouzivatelov/{blog_id}', [UserBlogsController::class, 'showBlogUser'])->name('show.userBlog');

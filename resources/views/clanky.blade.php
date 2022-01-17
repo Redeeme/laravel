@@ -18,6 +18,9 @@
                 Aliquam
                 semper lobortis nulla sit amet ultricies. Quisque et pretium diam. Quisque non venenatis risus.
             </p>
+            @if(Auth::id()==1)
+            <a href="{{ route('admin.add') }}">pridanie clanku</a>
+            @endif
             <table class="table table-hover">
                 <thead>
                 <th>Pridane dna</th>

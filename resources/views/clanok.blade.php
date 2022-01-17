@@ -64,6 +64,10 @@
                     </tbody>
                 </table>
             </div>
+            @if(Auth::id()==1)
+            <a href="{{ route('admin.delete',$blog->id) }}">vymazanie clanku</a>
+            <a href="{{ route('admin.edit',$blog->id) }}">editovanie clanku</a>
+            @endif
         </div>
 
 @endsection

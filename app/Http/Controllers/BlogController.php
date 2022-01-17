@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 
 class BlogController extends Controller
 {
@@ -26,6 +28,63 @@ class BlogController extends Controller
             'blog' => $blog,
             'comments' => $comments,
         ]);
+    }
+    public function add(){
+        return view('adminAdd');
+    }
+    public function addBlog(Request $request){
+        if (Auth::id() == 1) {
+            $request->validate([
+                'nazov_blogu' => 'required',
+                'autor_blogu' => 'required',
+                'uvodny_obrazok' => 'required',
+                'uvodny_text' => 'required',
+                'obsah_blogu' => 'required',
+            ]);
+            $blog = new Blog();
+            $blog->nazov = $request->nazov_blogu;
+            $blog->autor = $request->autor_blogu;
+            $blog->uvodny_obrazok = $request->uvodny_obrazok;
+            $blog->kontent = $request->obsah_blogu;
+            $blog->uvodny_text = $request->uvodny_text;
+            $blog->slug = $request->nazov_blogu;
+            $blog->save();
+        }
+        return redirect()->route('clanky');
+    }
+    public function deleteBlog($blog_id){
+        $delete = DB::table('blogs')
+            ->where('id', $blog_id)
+            ->delete();
+        return redirect('clanky');
+    }
+    public function edit($blog_id){
+        $blog = Blog::find($blog_id);
+        return view('adminEdit', [
+            'blog' => $blog,
+        ]);
+    }
+    public function editBlog(Request $request,$blog_id){
+        if (Auth::id() == 1) {
+            $request->validate([
+                'nazov_blogu' => 'required',
+                'autor_blogu' => 'required',
+                'uvodny_obrazok' => 'required',
+                'uvodny_text' => 'required',
+                'obsah_blogu' => 'required',
+            ]);
+            $updating = DB::table('blogs')
+                ->where('id', $blog_id)
+                ->update([
+                    'nazov' => $request->input('nazov_blogu'),
+                    'autor' => $request->input('autor_blogu'),
+                    'uvodny_obrazok' => $request->input('uvodny_obrazok'),
+                    'kontent' => $request->input('obsah_blogu'),
+                    'uvodny_text' => $request->input('uvodny_text'),
+                    'slug' => $request->input('nazov_blogu'),
+                ]);
+        }
+        return redirect()->route('clanky');
     }
 
 
