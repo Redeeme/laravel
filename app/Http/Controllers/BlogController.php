@@ -11,13 +11,19 @@ use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
-    //
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
         $blogs = DB::select('select * from blogs');
         return view('clanky', ['blogs' => $blogs]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function show($id)
     {
         $blog = Blog::find($id);
@@ -29,6 +35,10 @@ class BlogController extends Controller
             'comments' => $comments,
         ]);
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function add(){
         return view('adminAdd');
     }
@@ -52,6 +62,11 @@ class BlogController extends Controller
         }
         return redirect()->route('clanky');
     }
+
+    /**
+     * @param $blog_id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function deleteBlog($blog_id){
         $delete = DB::table('blogs')
             ->where('id', $blog_id)
@@ -64,6 +79,12 @@ class BlogController extends Controller
             'blog' => $blog,
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @param $blog_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function editBlog(Request $request,$blog_id){
         if (Auth::id() == 1) {
             $request->validate([

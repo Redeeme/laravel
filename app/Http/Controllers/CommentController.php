@@ -12,6 +12,11 @@ use App\Models\User;
 
 class CommentController extends Controller
 {
+    /**
+     * @param Request $request
+     * @param $blog_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     function store(Request $request, $blog_id)
     {
         $request->validate([
@@ -28,6 +33,11 @@ class CommentController extends Controller
         return redirect()->route('blog.show', $blog->id);
     }
 
+    /**
+     * @param Request $request
+     * @param $comment_id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     function editComment(Request $request, $comment_id)
     {
         $request->validate([
@@ -42,6 +52,10 @@ class CommentController extends Controller
         return redirect('profile');
     }
 
+    /**
+     * @param $comment_id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     function delete($comment_id)
     {
         $delete = DB::table('comments')

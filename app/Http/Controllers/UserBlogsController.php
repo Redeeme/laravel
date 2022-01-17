@@ -17,6 +17,10 @@ class UserBlogsController extends Controller
         return view('clanky_pouzivatelov');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function addBlog(Request $request)
     {
         $request->validate([
@@ -39,6 +43,10 @@ class UserBlogsController extends Controller
         }
     }
 
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
     public function getUserBlogsList()
     {
         $blogs = UserBlog::all();
@@ -50,6 +58,10 @@ class UserBlogsController extends Controller
             ->make(true);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function showBlogUser($id)
     {
         $blog = UserBlog::find($id);

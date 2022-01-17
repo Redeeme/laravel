@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     function index()
     {
         $comments = DB::table('comments')
@@ -18,6 +21,9 @@ class ProfileController extends Controller
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     function edit()
     {
         $row = DB::table('users')
@@ -30,6 +36,10 @@ class ProfileController extends Controller
         return view('auth.edit', $data);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     function update(Request $request)
     {
         $request->validate([
@@ -45,6 +55,9 @@ class ProfileController extends Controller
         return redirect('profile');
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     function delete()
     {
         $delete = DB::table('users')
