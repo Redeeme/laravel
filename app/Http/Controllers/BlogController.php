@@ -68,16 +68,20 @@ class BlogController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function deleteBlog($blog_id){
-        $delete = DB::table('blogs')
-            ->where('id', $blog_id)
-            ->delete();
-        return redirect('clanky');
+        if (Auth::id() == 1) {
+            $delete = DB::table('blogs')
+                ->where('id', $blog_id)
+                ->delete();
+            return redirect('clanky');
+        }
     }
     public function edit($blog_id){
-        $blog = Blog::find($blog_id);
-        return view('adminEdit', [
-            'blog' => $blog,
-        ]);
+        if (Auth::id() == 1) {
+            $blog = Blog::find($blog_id);
+            return view('adminEdit', [
+                'blog' => $blog,
+            ]);
+        }
     }
 
     /**
