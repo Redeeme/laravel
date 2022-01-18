@@ -27,10 +27,15 @@ class HomeController extends Controller
         return view('home');
     }
     public function home(){
-        $entry = Blog::orderBy('created_at', 'ASC')->get();
-        end($entry);         // move the internal pointer to the end of the array
-        $key = key($entry);  // fetches the key of the element pointed to by th
-        $entry = Blog::orderBy('created_at', 'ASC')->get();
+        $blogs = Blog::orderBy('created_at', 'ASC')->get();
+        $latestBlogs = array();
+        for ($x = 0; $x <= 2; $x++) {
+            $latestBlogs[$x] = $blogs->last();
+            unset($blogs[count($blogs)-1]);
+        }
+        $randomBlogs = Blog::inRandomOrder()->limit(3)->get();
+        return view('index',['latestBlogs' => $latestBlogs,'randomBlogs'=>$randomBlogs]);
+
     }
 
 }
