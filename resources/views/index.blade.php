@@ -24,7 +24,8 @@
             <div class="karta">
                 <div class="Popularne prispevky">
                     <a href="{{route('blog.show', $randomBlog->id)}}">
-                    <img src={{$randomBlog->uvodny_obrazok}}class="responsive" alt="obrazok">
+                    <img src={{$randomBlog->uvodny_obrazok}}
+                         alt="obrazok4" class="responsive">
                     </a>
                 </div>
             </div>

@@ -19,10 +19,12 @@
                 semper lobortis nulla sit amet ultricies. Quisque et pretium diam. Quisque non venenatis risus.
             </p>
             @if(Auth::id()==1)
+                <div class="top-buffer">
             <a href="{{ route('admin.add') }}">pridanie clanku</a>
+                </div>
                 <form action="{{route('add.category')}}" method=post id="add_category_form">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group top-buffer">
                         <label for="">Nazov Kategorie</label>
                         <label>
                             <input type="text" class="form-control" name="nazov_kategorie"
@@ -47,7 +49,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn-block btn-success">SAVE</button>
+                    <button type="submit" class="btn-block btn-success">Filter</button>
                 </div>
             </form>
             <table class="table table-hover">

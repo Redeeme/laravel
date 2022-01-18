@@ -181,6 +181,9 @@ O Nas
 .page_content{
     margin-bottom: 100vh;
 }
+.top-buffer {
+    margin-top:20px;
+}
 
 
 

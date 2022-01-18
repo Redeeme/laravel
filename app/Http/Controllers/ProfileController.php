@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,24 +17,11 @@ class ProfileController extends Controller
         $comments = DB::table('comments')
             ->where('user_id', '=', Auth::id())
             ->get();
+        $user = User::find(Auth::id());
         return view('profile', [
             'comments' => $comments,
+            'user'=>$user,
         ]);
-    }
-
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    function edit()
-    {
-        $row = DB::table('users')
-            ->where('id', Auth::id())
-            ->first();
-        $data = [
-            'Info' => $row,
-            'Title' => 'Edit'
-        ];
-        return view('auth.edit', $data);
     }
 
     /**

@@ -28,9 +28,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get("/index",[HomeController::class,'home'])->name('index');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
-Route::post('/update', [ProfileController::class, 'update'])->name('update');
-Route::get('/delete', [ProfileController::class, 'delete'])->name('delete');
+Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
+Route::get('/delete', [ProfileController::class, 'delete'])->name('profile.delete');
 
 Route::get('/clanky/{id}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/clanky', [BlogController::class, 'index'])->name('clanky');
