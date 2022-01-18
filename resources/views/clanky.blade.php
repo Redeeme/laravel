@@ -20,7 +20,36 @@
             </p>
             @if(Auth::id()==1)
             <a href="{{ route('admin.add') }}">pridanie clanku</a>
+                <form action="{{route('add.category')}}" method=post id="add_category_form">
+                    @csrf
+                    <div class="form-group">
+                        <label for="">Nazov Kategorie</label>
+                        <label>
+                            <input type="text" class="form-control" name="nazov_kategorie"
+                                   placeholder="nazov_kategorie">
+                        </label>
+                        <span class="text-danger error-text nazov_kategorie_error"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn-block btn-success">SAVE</button>
+                    </div>
+                </form>
             @endif
+            <form action="{{route('filter')}}" method=post id="filter_form">
+                @csrf
+                <div class="form-group">
+                    <label for="inputCategory">Kategoria</label>
+                    <select id="inputCategory" class="form-control" name="kategoria">
+                        <option selected>Choose...</option>
+                        @foreach($categories as $category)
+                            <option>{{$category->nazov}}/{{$category->id}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn-block btn-success">SAVE</button>
+                </div>
+            </form>
             <table class="table table-hover">
                 <thead>
                 <th>Pridane dna</th>
@@ -36,7 +65,6 @@
                             </form>
                         </td>
                     </tr>
-
                 @endforeach
                 </tbody>
             </table>

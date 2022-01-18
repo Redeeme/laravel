@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserBlogsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,9 @@ use App\Http\Controllers\HomeController;
 
 Route::view("/clanky", 'clanky')->name('clanky');
 Route::view("/o_nas", 'o_nas')->name('o_nas');
-Route::view("/index", 'index')->name('index');
 Route::view("/login", 'login')->name('login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get("/index",[HomeController::class,'home'])->name('index');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
@@ -38,6 +39,7 @@ Route::post('/clanky/add', [BlogController::class, 'addBlog'])->name('admin.addB
 Route::get('/editB/{blog_id}', [BlogController::class, 'edit'])->name('admin.edit');
 Route::get('/deleteB/{blog_id}', [BlogController::class, 'deleteBlog'])->name('admin.delete');
 Route::post('/clanky/editB/{blog_id}', [BlogController::class, 'editBlog'])->name('admin.editBlog');
+Route::post('/clanky/podla_kategorie',[BlogController::class,'filterByCategory'])->name('filter');
 
 Route::get('/clanky_pouzivatelov', [UserBlogsController::class, 'index'])->name('clanky_pouzivatelov');
 Route::get('/clanky_pouzivatelov/{blog_id}', [UserBlogsController::class, 'showBlogUser'])->name('show.userBlog');
@@ -48,6 +50,7 @@ Route::post("/edit_comment/{comment_id}", [CommentController::class, 'editCommen
 Route::post('/comments/{blog_id}', [CommentController::class, 'store'])->name('comments.add');
 Route::get('/comments/{comment_id}', [CommentController::class, 'delete'])->name('comments.delete');
 
+Route::post('/clanky',[CategoryController::class,'index'])->name('add.category');
 
 Auth::routes();
 

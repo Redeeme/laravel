@@ -2,6 +2,7 @@
 
 @section('content')
     <script src="{{ asset('js/app.js') }}" defer></script>
+
     <div class="noveMenu">
         <div class="obsah">
             <div class="karta">

@@ -49,6 +49,15 @@
                             </label>
                             <span class="text-danger error-text obsah_blogu_error"></span>
                         </div>
+                        <div class="form-group">
+                            <label for="inputCategory">Kategoria</label>
+                            <select id="inputCategory" class="form-control" name="kategoria">
+                                <option selected>Choose...</option>
+                                @foreach($categories as $category)
+                                    <option>{{$category->nazov}}/{{$category->id}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="form-group">
                             <button type="submit" class="btn-block btn-success">SAVE</button>

@@ -10,6 +10,7 @@
                 <div class="centered">
                     <h6>{{$blog->nazov}}</h6>
                     <h6>Written By {{$blog->autor}}</h6>
+                    <h6>{{$category->nazov}}</h6>
                 </div>
             </div>
             <div class="obsahClanky">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,8 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = DB::select('select * from blogs');
-        return view('clanky', ['blogs' => $blogs]);
+        $categories = DB::select('select * from categories');
+        return view('clanky', ['blogs' => $blogs,'categories'=>$categories]);
     }
 
     /**
@@ -30,9 +32,11 @@ class BlogController extends Controller
         $comments = DB::table('comments')
             ->where('blog_id', '=', $id)
             ->get();
+        $category = Category::find($blog->category_id);
         return view('clanok', [
             'blog' => $blog,
             'comments' => $comments,
+            'category' => $category
         ]);
     }
 
@@ -40,7 +44,10 @@ class BlogController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function add(){
-        return view('adminAdd');
+        $categories = Category::all();
+        return view('adminAdd',[
+            'categories' => $categories,
+        ]);
     }
     public function addBlog(Request $request){
         if (Auth::id() == 1) {
@@ -50,7 +57,11 @@ class BlogController extends Controller
                 'uvodny_obrazok' => 'required',
                 'uvodny_text' => 'required',
                 'obsah_blogu' => 'required',
+                'kategoria' => 'required',
             ]);
+
+            $string =  $request->kategoria;
+            $str_arr = explode ("/", $string);
             $blog = new Blog();
             $blog->nazov = $request->nazov_blogu;
             $blog->autor = $request->autor_blogu;
@@ -58,6 +69,7 @@ class BlogController extends Controller
             $blog->kontent = $request->obsah_blogu;
             $blog->uvodny_text = $request->uvodny_text;
             $blog->slug = $request->nazov_blogu;
+            $blog->category_id = $str_arr[1];
             $blog->save();
         }
         return redirect()->route('clanky');
@@ -110,6 +122,17 @@ class BlogController extends Controller
                 ]);
         }
         return redirect()->route('clanky');
+    }
+    public function filterByCategory(Request $request){
+        if($request->kategoria != 'Choose...') {
+            $string =  $request->kategoria;
+            $str_arr = explode ("/", $string);
+            $blogs = DB::select('select * from blogs where category_id = :id', ['id' => $str_arr[1]]);
+            $categories = DB::select('select * from categories');
+            return view('clanky', ['blogs' => $blogs,'categories'=>$categories]);
+        }else{
+            return $this->index();
+        }
     }
 
 
