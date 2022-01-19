@@ -75,15 +75,14 @@
                 @foreach($book_cat as $cat)
                                 <table class="table table-hover">
                                     <thead>
-                                    <th colspan="2">{{$cat->nazov}}</th>
+                                    <th>{{$cat->nazov}}</th>
                                     </thead>
                     @foreach($books as $book)
 
                             <tbody>
                             @if($book->book_cat_id == $cat->id)
                             <tr>
-                                <td>{{$book->nazov}}</td>
-                                <td>{{$book->autor}}</td>
+                                <td style="width: 100%">{{$book->nazov}} od {{$book->autor}}</td>
                             </tr>
                             @endif
                             </tbody>
