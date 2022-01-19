@@ -8,6 +8,7 @@ use App\Http\Controllers\UserBlogsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::view("/clanky", 'clanky')->name('clanky');
 Route::view("/o_nas", 'o_nas')->name('o_nas');
 Route::view("/login", 'login')->name('login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get("/index",[HomeController::class,'home'])->name('index');
+Route::get("/index",[BlogController::class,'home'])->name('index');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/update', [ProfileController::class, 'update'])->name('profile.update');
@@ -50,6 +51,9 @@ Route::post('/comments/{blog_id}', [CommentController::class, 'store'])->name('c
 Route::get('/comments/{comment_id}', [CommentController::class, 'delete'])->name('comments.delete');
 
 Route::post('/clanky',[CategoryController::class,'index'])->name('add.category');
+Route::get('/knihy',[BookController::class,'index'])->name('knihy');
+Route::post('/knihy/addB',[BookController::class,'addBook'])->name('knihy.add');
+Route::post('/knihy/addC',[BookController::class,'addCat'])->name('knihy.kat.add');
 
 Auth::routes();
 

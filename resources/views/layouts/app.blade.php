@@ -60,6 +60,9 @@
                         <a class="nav-link" href="{{route('clanky_pouzivatelov')}}">Clanky od pouzivatelov</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{route('knihy')}}">Knihy</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{route('o_nas')}}">O nas</a>
                     </li>
                     @guest

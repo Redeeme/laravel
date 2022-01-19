@@ -26,16 +26,5 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function home(){
-        $blogs = Blog::orderBy('created_at', 'ASC')->get();
-        $latestBlogs = array();
-        for ($x = 0; $x <= 2; $x++) {
-            $latestBlogs[$x] = $blogs->last();
-            unset($blogs[count($blogs)-1]);
-        }
-        $randomBlogs = Blog::inRandomOrder()->limit(3)->get();
-        return view('index',['latestBlogs' => $latestBlogs,'randomBlogs'=>$randomBlogs]);
-
-    }
 
 }
